@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GLOWA: O Método de Transformação Feminina</title>
@@ -449,9 +450,10 @@
   .bonuses__head .section-title { margin: 12px auto 0; max-width: 640px; }
   .bonuses-grid {
     display: grid; gap: 18px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 860px;
+    margin-inline: auto;
   }
-  @media (max-width: 900px) { .bonuses-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 560px) { .bonuses-grid { grid-template-columns: 1fr; } }
   .bonus-card {
     background: var(--white);
@@ -712,8 +714,7 @@
     display: grid; gap: 18px;
     grid-template-columns: repeat(3, 1fr);
   }
-  @media (max-width: 960px) { .testimonial-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 640px) { .testimonial-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 960px) { .testimonial-grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; } }
   .testimonial-card {
     background: var(--white);
     border: 1px solid var(--border-soft);
@@ -1288,9 +1289,178 @@
     }
     .voice-note.is-playing .voice-note__bar { animation: none; }
   }
+  /* ================= REFINAMENTOS V2 ================= */
+  html { scroll-padding-top: 84px; }
+  body { text-rendering: optimizeLegibility; }
+  p { text-wrap: pretty; }
+  section { padding-block: clamp(64px, 8vw, 130px); }
+  :focus-visible { outline: 2px solid var(--pink-deep); outline-offset: 3px; border-radius: 6px; }
+
+  .progress {
+    position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 70;
+    transform: scaleX(0); transform-origin: 0 50%; pointer-events: none;
+    background: linear-gradient(90deg, var(--pink), var(--pink-deep));
+  }
+
+  /* reveal: só esconde quando o JS está ativo */
+  .reveal-line, .reveal-fade { opacity: 1; transform: none; }
+  .js .reveal-line:not(.is-visible),
+  .js .reveal-fade:not(.is-visible) { opacity: 0; transform: translateY(26px); }
+  .hero-product-name { opacity: 1; transform: none; }
+  .js .hero-product-name:not(.is-visible) { opacity: 0; transform: translateY(16px); }
+
+  /* hero */
+  .stripes {
+    background-image: repeating-linear-gradient(90deg, transparent 0 28px, rgba(243,214,224,.5) 28px 56px);
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(45% 45% at 10% 8%, rgba(232,160,181,.45), transparent 70%),
+      radial-gradient(40% 40% at 92% 75%, rgba(212,122,150,.30), transparent 70%);
+    animation: orbs 12s ease-in-out infinite alternate;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 180px; z-index: 1; pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--white));
+  }
+  @keyframes orbs { to { transform: scale(1.08) translate3d(0, 10px, 0); } }
+  .hero-product-accent { position: relative; animation: none; filter: none; text-shadow: 0 0 28px rgba(224,122,150,.5); }
+  .hero-product-accent::after {
+    content: "a"; position: absolute; left: 0; top: 0; pointer-events: none;
+    color: #F2A8BC; filter: blur(12px); opacity: .3;
+    animation: accentPulse 2.8s ease-in-out infinite alternate;
+  }
+  @keyframes accentPulse { to { opacity: .85; } }
+
+  /* botões */
+  .btn {
+    position: relative; overflow: hidden; isolation: isolate;
+    height: auto; min-height: 54px; padding: 14px 30px; text-align: center; line-height: 1.3;
+  }
+  .btn::after {
+    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.35) 50%, transparent 65%);
+    transform: translateX(-120%); transition: transform .8s var(--ease);
+  }
+  .btn:hover::after { transform: translateX(120%); }
+  .btn:active { transform: translateY(0) scale(.98); }
+  @media (max-width: 640px) { .btn { padding: 14px 18px; } }
+
+  /* navbar */
+  .navbar.scrolled { box-shadow: 0 1px 0 var(--border-soft), 0 12px 30px rgba(184,92,120,.08); }
+  .navbar__links a { position: relative; }
+  .navbar__links a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1.5px;
+    background: var(--pink-deep); transform: scaleX(0); transform-origin: left;
+    transition: transform .35s var(--ease);
+  }
+  .navbar__links a:hover::after, .navbar__links a.is-active::after { transform: scaleX(1); }
+  .navbar__links a.is-active { color: var(--pink-deep); }
+
+  /* cards */
+  .bonus-card, .testimonial-card, .team-card {
+    border-radius: 20px;
+    transition: opacity .8s var(--ease), transform .45s var(--ease), box-shadow .4s ease, border-color .4s ease;
+  }
+  .bonus-card, .testimonial-card { box-shadow: 0 10px 30px rgba(184,92,120,.06); }
+  .bonus-card:hover, .testimonial-card:hover, .team-card:hover {
+    box-shadow: 0 22px 50px rgba(184,92,120,.16); border-color: rgba(184,92,120,.4);
+  }
+  .bonus-card::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 20px 20px 0 0;
+    background: linear-gradient(90deg, var(--pink), var(--pink-deep)); opacity: .8;
+  }
+  .bonus-card__value { color: #A8854F; }
+
+  /* problema */
+  .problem { background: var(--white); }
+  .problem-line { grid-template-columns: 64px 1fr; align-items: baseline; transition: padding .35s var(--ease); }
+  .problem-line:hover { padding-left: 10px; }
+  .problem-line__num { font-family: "Cormorant Garamond", serif; font-size: 2rem; font-weight: 600; line-height: 1; color: var(--pink); }
+
+  /* time (corrige o layout em grade herdado de .mentor .wrap) */
+  .team-section { background: var(--blush); }
+  .mentor .wrap.team { display: block; max-width: 1100px; }
+  .team-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; max-width: 1000px; }
+  .team-card { flex: 0 0 calc((100% - 44px) / 3); background: var(--white); }
+  @media (max-width: 900px) { .team-card { flex-basis: calc((100% - 22px) / 2); } }
+  @media (max-width: 560px) { .team-grid { max-width: none; } .team-card { flex-basis: 100%; max-width: 340px; } }
+  .mentor__media { border-radius: 22px; box-shadow: 0 30px 70px rgba(184,92,120,.18); }
+
+  /* depoimentos */
+  .testimonial-card__stars { color: var(--pink-mid); letter-spacing: .2em; font-size: 13px; margin-bottom: 14px; }
+  .testimonial-card__quote { font-size: 1.15rem; line-height: 1.6; }
+
+  /* oferta */
+  .offer__price-block {
+    border: 1.5px solid transparent; border-radius: 24px; padding: 34px 28px 32px;
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(160deg, var(--pink), var(--pink-deep), var(--pink)) border-box;
+    box-shadow: 0 30px 80px rgba(184,92,120,.18);
+  }
+  .offer__list { margin: 0; max-width: none; }
+  .offer__list li { align-items: center; gap: 10px; }
+  .offer__list li span { flex: 1; }
+  .offer__list li s { color: var(--ink-muted); font-size: 13px; text-decoration-thickness: 1px; }
+  .offer__list li b { color: var(--pink-deep); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .offer__from { margin-top: 26px; }
+  .offer__price { font-size: clamp(3.2rem, 8vw, 4.4rem); }
+  .offer__save {
+    display: inline-block; margin-top: 12px; padding: 6px 14px; border-radius: 999px;
+    background: var(--pink-soft); color: var(--pink-deep); font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  }
+  .guarantee__stat { box-shadow: 0 24px 60px rgba(184,92,120,.12); }
+
+  /* faq */
+  .faq-item__question { transition: color .25s ease; }
+  .faq-item__trigger:hover .faq-item__question { color: var(--pink-deep); }
+
+  /* áudio */
+  .voice-section__hint span {
+    display: block; margin-top: 6px; font-size: 11px; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--pink-deep);
+  }
+  .voice-note__bar.is-played { background: var(--pink-deep); opacity: .95; }
+
+  /* carrossel de resultados */
+  .results-carousel { max-width: 760px; }
+  .results-track { --sw: min(78vw, 340px); position: relative; padding-inline: calc((100% - var(--sw)) / 2); }
+  .transformation {
+    flex: 0 0 var(--sw); opacity: .55; transform: scale(.94);
+    transition: transform .5s var(--ease), opacity .5s ease;
+  }
+  .transformation.is-current { opacity: 1; transform: none; }
+  @media (min-width: 700px) { .results-track { --sw: 420px; } .transformation { flex-basis: var(--sw); } }
+  .transformation__media { border-radius: 18px; box-shadow: 0 20px 50px rgba(184,92,120,.14); }
+
+  /* CTA fixo no celular */
+  .sticky-cta { display: none; }
+  @media (max-width: 900px) {
+    .sticky-cta {
+      display: flex; align-items: center; gap: 12px;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+      background: rgba(255,249,247,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 -1px 0 var(--border-soft), 0 -12px 30px rgba(184,92,120,.1);
+      transform: translateY(110%); visibility: hidden;
+      transition: transform .45s var(--ease), visibility 0s .45s;
+    }
+    .sticky-cta.is-shown { transform: none; visibility: visible; transition: transform .45s var(--ease), visibility 0s; }
+    .sticky-cta__price { display: flex; flex-direction: column; line-height: 1.1; white-space: nowrap; }
+    .sticky-cta__price s { font-size: 11px; color: var(--ink-muted); }
+    .sticky-cta__price strong { font-family: "Cormorant Garamond", serif; font-size: 1.6rem; color: var(--pink-deep); }
+    .sticky-cta .btn { flex: 1; width: auto; min-height: 48px; }
+    footer { padding-bottom: 88px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal-line:not(.is-visible), .js .reveal-fade:not(.is-visible), .js .hero-product-name:not(.is-visible) { opacity: 1; transform: none; }
+    .hero::before, .hero-product-accent::after { animation: none; }
+  }
 </style>
 </head>
 <body>
+<div class="progress" id="scrollProgress" aria-hidden="true"></div>
 
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
@@ -1364,7 +1534,7 @@
       <div class="results-track" id="resultsTrack">
         <figure class="transformation">
           <div class="transformation__media">
-            <img src="src/img/antesedepois1.png" alt="Antes e depois — transformação 01" loading="lazy"
+            <img src="src/img/antesedepois1.png" alt="Antes e depois, transformação 01" loading="lazy"
                  onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
             <div class="transformation__placeholder">[ Antes / Depois ]</div>
           </div>
@@ -1372,7 +1542,7 @@
         </figure>
         <figure class="transformation">
           <div class="transformation__media">
-            <img src="src/img/1.png" alt="Antes e depois — cabelo e presença" loading="lazy"
+            <img src="src/img/1.png" alt="Antes e depois, cabelo e presença" loading="lazy"
                  onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
             <div class="transformation__placeholder">[ Antes / Depois ]</div>
           </div>
@@ -1380,7 +1550,7 @@
         </figure>
         <figure class="transformation">
           <div class="transformation__media">
-            <img src="src/img/2.png" alt="Antes e depois — visual e confiança" loading="lazy"
+            <img src="src/img/2.png" alt="Antes e depois, visual e confiança" loading="lazy"
                  onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
             <div class="transformation__placeholder">[ Antes / Depois ]</div>
           </div>
@@ -1388,7 +1558,7 @@
         </figure>
         <figure class="transformation">
           <div class="transformation__media">
-            <img src="src/img/3.png" alt="Antes e depois — estilo e brilho" loading="lazy"
+            <img src="src/img/3.png" alt="Antes e depois, estilo e brilho" loading="lazy"
                  onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
             <div class="transformation__placeholder">[ Antes / Depois ]</div>
           </div>
@@ -1396,7 +1566,7 @@
         </figure>
         <figure class="transformation">
           <div class="transformation__media">
-            <img src="src/img/antesedepoisrafa.png" alt="Antes e depois — glow e sofisticação" loading="lazy"
+            <img src="src/img/antesedepoisrafa.png" alt="Antes e depois, glow e sofisticação" loading="lazy"
                  onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
             <div class="transformation__placeholder">[ Antes / Depois ]</div>
           </div>
@@ -1410,68 +1580,8 @@
   </div>
 </section>
 
-<!-- MÓDULOS -->
-<section class="modules" id="conteudo">
-  <div class="wrap">
-    <div class="modules__head">
-      <div class="eyebrow reveal-line">O que muda na sua vida</div>
-      <h2 class="section-title reveal-line">Nove pilares. Uma transformação que ninguém consegue ignorar.</h2>
-    </div>
-    <div class="modules-grid">
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">01</div>
-        <div class="module-card__title">Pele que brilha de verdade</div>
-        <p class="module-card__text">Chega de gastar com produto errado. Protocolo certo para o seu tipo de pele, rotina manhã e noite, e o glow que aparece no espelho e nas fotos sem filtro.</p>
-      </div>
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">02</div>
-        <div class="module-card__title">Cabelo que chama atenção</div>
-        <p class="module-card__text">Cabelo opaco e sem vida? Acabou. Cronograma, óleos e hábitos que devolvem força, brilho e aquele movimento que faz as pessoas repararem em você.</p>
-      </div>
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">03</div>
-        <div class="module-card__title">Corpo e postura de mulher confiante</div>
-        <p class="module-card__text">A forma como você se move muda como o mundo te trata. Postura, presença e hábitos que fazem você ocupar o espaço como quem sabe o seu valor.</p>
-      </div>
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">04</div>
-        <div class="module-card__title">Estilo que te favorece de verdade</div>
-        <p class="module-card__text">Chega de copiar look de influenciadora e não parecer você. Descubra o que realmente favorece o seu corpo e o seu rostinho e vista a mulher que você quer ser.</p>
-      </div>
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">05</div>
-        <div class="module-card__title">Makeup que realça, não mascara</div>
-        <p class="module-card__text">Maquiagem rápida que te deixa mais bonita, não diferente. Técnicas de 5 e 10 minutos para o dia a dia, com o que você já tem na necessaire.</p>
-      </div>
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">06</div>
-        <div class="module-card__title">A mentalidade de quem se prioriza</div>
-        <p class="module-card__text">Beleza sem confiança não segura. A rotina mental e emocional que faz você se olhar no espelho e finalmente sentir: “eu mereço me sentir assim”.</p>
-      </div>
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">07</div>
-        <div class="module-card__title">Voz, presença e comunicação</div>
-        <p class="module-card__text">Como você fala e se posiciona muda tudo. Técnicas simples de comunicação e presença que fazem as pessoas te escutarem e te respeitarem.</p>
-      </div>
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">08</div>
-        <div class="module-card__title">Energia e rotina de alto padrão</div>
-        <p class="module-card__text">Sono, alimentação e hábitos que elevam sua energia e deixam o glow aparecer de dentro pra fora — sem dietas extremas.</p>
-      </div>
-      <div class="module-card reveal-fade">
-        <div class="module-card__num">09</div>
-        <div class="module-card__title">O plano de manutenção do glow</div>
-        <p class="module-card__text">Como manter os resultados depois dos 21 dias. Sistema simples pra não voltar pro ciclo de “comecei e parei”.</p>
-      </div>
-    </div>
-    <div class="section-cta reveal-fade">
-      <a href="https://pay.cakto.com.br/38zgvua_1168725" class="btn" target="_blank" rel="noopener">EU MEREÇO ME VALORIZAR →</a>
-    </div>
-  </div>
-</section>
-
 <!-- PRÉVIA DA ÁREA DE MEMBROS -->
-<section class="members" id="area-de-membros">
+<section class="members" id="conteudo">
   <div class="wrap">
     <div class="members__head">
       <div class="eyebrow reveal-line">Uma prévia do que você vai receber</div>
@@ -1540,7 +1650,7 @@
   </div>
 </section>
 
-<!-- ÁUDIO DEPOIMENTO — prova social após a prévia -->
+<!-- ÁUDIO DEPOIMENTO - prova social após a prévia -->
 <section class="voice-section" id="audio-investimento">
   <div class="wrap">
     <div class="voice-section__label reveal-fade">Ouça quem já investiu em si</div>
@@ -1579,17 +1689,13 @@
       <svg class="voice-note__mic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"/></svg>
       <audio id="voiceAudio" preload="metadata" src="src/img/melhorinvestimento.ogg"></audio>
     </div>
-    <p class="voice-section__hint reveal-fade">“Comprar o GLOWA foi o melhor investimento que eu fiz em mim.” — toque para ouvir</p>
+    <p class="voice-section__hint reveal-fade">“Comprar o GLOWA foi o melhor investimento que eu fiz em mim.”<span>toque para ouvir</span></p>
   </div>
 </section>
 
 <!-- BÔNUS -->
 <section class="bonuses" id="bonus">
   <div class="wrap">
-    <div class="bonuses__head">
-      <div class="eyebrow reveal-line">Bônus que aceleram o resultado</div>
-      <h2 class="section-title reveal-line">Você entra no método e ainda leva tudo isso de graça.</h2>
-    </div>
     <div class="bonuses-grid">
       <div class="bonus-card reveal-fade">
         <div class="bonus-card__tag">Bônus 01</div>
@@ -1599,30 +1705,18 @@
       </div>
       <div class="bonus-card reveal-fade">
         <div class="bonus-card__tag">Bônus 02</div>
-        <div class="bonus-card__title">Cronograma Capilar Feminino</div>
-        <p class="bonus-card__text">Plano de 30 dias para hidratação, nutrição e reconstrução. Cabelo mais forte e brilhante.</p>
-        <div class="bonus-card__value">Valor: R$ 67</div>
-      </div>
-      <div class="bonus-card reveal-fade">
-        <div class="bonus-card__tag">Bônus 03</div>
-        <div class="bonus-card__title">Biblioteca de Looks do Dia a Dia</div>
-        <p class="bonus-card__text">Combinações práticas para trabalho, encontro e eventos, usando o que você já tem.</p>
-        <div class="bonus-card__value">Valor: R$ 87</div>
-      </div>
-      <div class="bonus-card reveal-fade">
-        <div class="bonus-card__tag">Bônus 04</div>
-        <div class="bonus-card__title">Rotina de Autocuidado em 15 min</div>
-        <p class="bonus-card__text">Checklist diário e semanal para manter o glow mesmo com a vida corrida.</p>
-        <div class="bonus-card__value">Valor: R$ 47</div>
-      </div>
-      <div class="bonus-card reveal-fade">
-        <div class="bonus-card__tag">Bônus 05</div>
         <div class="bonus-card__title">Guia de Maquiagem Rápida</div>
         <p class="bonus-card__text">Looks de 5 e 10 minutos que elevam a aparência sem esforço.</p>
         <div class="bonus-card__value">Valor: R$ 57</div>
       </div>
       <div class="bonus-card reveal-fade">
-        <div class="bonus-card__tag">Bônus 06</div>
+        <div class="bonus-card__tag">Bônus 03</div>
+        <div class="bonus-card__title">Receitas Saudáveis para o Glow</div>
+        <p class="bonus-card__text">Receitas práticas e gostosas para nutrir sua pele, seu cabelo e sua energia por dentro.</p>
+        <div class="bonus-card__value">Valor: R$ 79</div>
+      </div>
+      <div class="bonus-card reveal-fade">
+        <div class="bonus-card__tag">Bônus 04</div>
         <div class="bonus-card__title">Comunidade Exclusiva GLOWA</div>
         <p class="bonus-card__text">Grupo privado de mulheres aplicando o método. Troca de resultados e suporte.</p>
         <div class="bonus-card__value">Valor: R$ 197</div>
@@ -1666,7 +1760,7 @@
 </section>
 
 <!-- ESPECIALISTAS GLOWA -->
-<section class="mentor">
+<section class="mentor team-section">
   <div class="wrap team" style="margin-top:0; margin-bottom:0;">
     <h3 class="team__title reveal-line">O time GLOWA</h3>
     <p class="team__subtitle reveal-fade">Especialistas que caminham com você em cada etapa da transformação.</p>
@@ -1729,7 +1823,7 @@
 <section class="mentor">
   <div class="wrap">
     <div class="mentor__media reveal-fade">
-      <img src="src/img/mentora.jpg" alt="Nathaly França — Expert GLOWA" loading="lazy"
+      <img src="src/img/mentora.jpg" alt="Nathaly França, Expert GLOWA" loading="lazy"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
       <div class="mentor__placeholder" style="display:none;">[ Foto da mentora ]</div>
     </div>
@@ -1773,22 +1867,21 @@
       <div class="offer__badge reveal-fade">✦ Oferta especial</div>
       <h2 class="section-title reveal-line">Hoje você decide se continua se escondendo ou se assume o seu glow.</h2>
       <p class="lede reveal-fade" style="margin:14px auto 0;text-align:center;">
-        Método completo + 6 bônus + comunidade de mulheres que decidiram se priorizar.
+        Método completo + 4 bônus + comunidade de mulheres que decidiram se priorizar.
       </p>
       <div class="offer__price-block reveal-fade">
+        <ul class="offer__list">
+          <li><span>Método GLOWA completo (9 módulos)</span></li>
+          <li><span>Guia de Skincare por Tipo de Pele</span></li>
+          <li><span>Guia de Maquiagem Rápida</span></li>
+          <li><span>Receitas Saudáveis para o Glow</span></li>
+          <li><span>Comunidade exclusiva de alunas</span></li>
+          <li><span>Garantia de 30 dias</span></li>
+        </ul>
         <div class="offer__from">De R$ 197 por apenas</div>
         <div class="offer__price"><span>R$</span>57,00</div>
+        <div class="offer__save">Você economiza R$ 140</div>
         <div class="offer__urgency">Acesso imediato · Garantia de 30 dias</div>
-        <ul class="offer__list">
-          <li>Método GLOWA completo (9 módulos)</li>
-          <li>Guia de Skincare por Tipo de Pele</li>
-          <li>Cronograma Capilar Feminino</li>
-          <li>Biblioteca de Looks do Dia a Dia</li>
-          <li>Rotina de Autocuidado em 15 min</li>
-          <li>Guia de Maquiagem Rápida</li>
-          <li>Comunidade exclusiva de alunas</li>
-          <li>Garantia de 30 dias</li>
-        </ul>
         <div style="margin-top:26px;">
           <a href="https://pay.cakto.com.br/38zgvua_1168725" class="btn" target="_blank" rel="noopener" style="width:100%;">
             SIM. EU GARANTO MINHA VAGA AGORA
@@ -1864,6 +1957,11 @@
   </div>
 </footer>
 
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta__price"><s>R$ 197</s><strong>R$ 57,00</strong></div>
+  <a href="https://pay.cakto.com.br/38zgvua_1168725" class="btn" target="_blank" rel="noopener">GARANTIR MINHA VAGA</a>
+</div>
+
 <script>
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -1899,17 +1997,14 @@
   });
 
   const testimonials = [
-    { id: "01", quote: "Eu me olhava no espelho e sentia que faltava alguma coisa. Depois do GLOWA, pela primeira vez em anos, eu me olhei e gostei do que vi. De verdade.", author: "Aluna GLOWA 01" },
-    { id: "02", quote: "Pare de comprar produto aleatório. Eu gastava e a pele continuava a mesma. Agora eu sei o que funciona pra mim e o glow aparece sem filtro.", author: "Aluna GLOWA 02" },
-    { id: "03", quote: "Eu achava que glow up era filtro e maquiagem pesada. O método me mostrou que presença e consistência mudam tudo. As pessoas começaram a reparar em mim.", author: "Aluna GLOWA 03" },
-    { id: "04", quote: "A maior virada foi me priorizar. Parei de deixar o autocuidado por último. E o resultado no espelho foi a prova de que eu merecia isso.", author: "Aluna GLOWA 04" },
-    { id: "05", quote: "Eu consumia conteúdo o dia inteiro e não aplicava nada. Com o GLOWA eu finalmente soube por onde começar e o que fazer em cada etapa.", author: "Aluna GLOWA 05" },
-    { id: "06", quote: "Não queria parecer outra pessoa. Queria me sentir bonita e confiante sendo eu. Essa mudança de perspectiva valeu mais do que qualquer produto que eu já comprei.", author: "Aluna GLOWA 06" }
+    { id: "01", quote: "girlsss eu juro que quase chorei no espelho 🥹 sempre achei que faltava alguma coisa em mim e o GLOWA me mostrou que era só falta de método. hoje eu me arrumo e me sinto linda de verdade 💖", author: "Aluna GLOWA 💕" },
+    { id: "02", quote: "gente, parei de gastar com produto aleatório!! 🙈 descobri o que funciona pra minha pele e minha rotina ficou super simples. minha prima até perguntou qual filtro eu tava usando kkkk ✨", author: "Aluna GLOWA 🌸" },
+    { id: "03", quote: "o que mais mudou foi eu me priorizar 🥰 antes o autocuidado era sempre o último da lista, agora é meu momento favorito do dia. me sinto mais confiante em tudo, até no trabalho 🎀", author: "Aluna GLOWA 🤍" }
   ];
   document.getElementById('testimonialGrid').innerHTML = testimonials.map((t, i) => `
     <article class="testimonial-card reveal-fade" data-delay="${i * 80}">
-      <div class="testimonial-card__num">${t.id}</div>
-      <p class="testimonial-card__quote">"${t.quote}"</p>
+      <div class="testimonial-card__stars" aria-label="5 estrelas">★★★★★</div>
+      <p class="testimonial-card__quote">“${t.quote}”</p>
       <span class="testimonial-card__author">${t.author}</span>
     </article>
   `).join('');
@@ -1922,7 +2017,7 @@
     { question: "O GLOWA é só para mulheres?", answer: "Sim. O método foi criado especialmente para o público feminino, com linguagem, exemplos e foco nas necessidades das mulheres." },
     { question: "Vou precisar gastar muito em produtos?", answer: "Não necessariamente. O foco é te ensinar a escolher melhor e usar o que já faz sentido para a sua pele e o seu orçamento." },
     { question: "Preciso mudar completamente meu estilo?", answer: "Não. O objetivo não é apagar quem você é. É te ajudar a identificar o que favorece a sua imagem e construir uma versão mais refinada de você mesma." },
-    { question: "Consigo aplicar mesmo com a rotina corrida?", answer: "Sim. Há orientações de rotinas curtas (incluindo o bônus de 15 minutos) para que o autocuidado caiba na vida real." },
+    { question: "Consigo aplicar mesmo com a rotina corrida?", answer: "Sim. O método tem orientações de rotinas curtas e práticas para que o autocuidado caiba na vida real." },
     { question: "Por quanto tempo terei acesso?", answer: "Consulte as condições na página de pagamento para ver o período de acesso da sua compra." },
     { question: "Posso assistir pelo celular?", answer: "Sim. O conteúdo pode ser acessado pelo celular ou computador." },
     { question: "Não recebi meu acesso. O que faço?", answer: "Verifique a caixa de entrada, spam e promoções do e-mail usado na compra. Se ainda não encontrar, use o canal de suporte informado após a compra." }
@@ -1977,116 +2072,89 @@
       setTimeout(() => el.classList.add('is-visible'), delay);
       io.unobserve(el);
     });
-  }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.getElementById('glowaName').setAttribute('data-delay', '200');
   revealables.forEach(el => io.observe(el));
 
-  /* Results carousel — autoplay + swipe */
+  /* Carrossel de resultados: autoplay só quando visível, swipe nativo, arrastar com mouse */
   (function () {
     const track = document.getElementById('resultsTrack');
     const dotsWrap = document.getElementById('resultsDots');
     if (!track) return;
     const slides = Array.from(track.querySelectorAll('.transformation'));
     if (!slides.length) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let index = 0, lastTouch = 0, visible = false, raf = 0;
 
-    slides.forEach((_, i) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'results-dot' + (i === 0 ? ' is-active' : '');
-      btn.setAttribute('aria-label', 'Ir para transformação ' + (i + 1));
-      btn.addEventListener('click', () => {
-        stopAuto();
-        goTo(i);
-        startAuto();
+    const dots = slides.map((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'results-dot';
+      b.setAttribute('aria-label', 'Ir para transformação ' + (i + 1));
+      b.addEventListener('click', () => { lastTouch = Date.now(); goTo(i); });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function offsetFor(i) {
+      const s = slides[i];
+      return s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
+    }
+    function mark(i) {
+      index = i;
+      dots.forEach((d, di) => d.classList.toggle('is-active', di === i));
+      slides.forEach((s, si) => s.classList.toggle('is-current', si === i));
+    }
+    function goTo(i, instant) {
+      i = (i + slides.length) % slides.length;
+      track.scrollTo({ left: offsetFor(i), behavior: instant ? 'auto' : 'smooth' });
+      if (instant) mark(i);
+    }
+    function nearest() {
+      const c = track.scrollLeft + track.clientWidth / 2;
+      let best = 0, dist = Infinity;
+      slides.forEach((s, i) => {
+        const d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - c);
+        if (d < dist) { dist = d; best = i; }
       });
-      dotsWrap.appendChild(btn);
-    });
-    const dots = Array.from(dotsWrap.querySelectorAll('.results-dot'));
-
-    let index = 0;
-    let autoTimer = null;
-    let userPaused = false;
-
-    function slideWidth() {
-      const s = slides[0];
-      const gap = 16;
-      return s.getBoundingClientRect().width + gap;
+      return best;
     }
-
-    function goTo(i) {
-      index = (i + slides.length) % slides.length;
-      track.scrollTo({ left: index * slideWidth(), behavior: 'smooth' });
-      dots.forEach((d, di) => d.classList.toggle('is-active', di === index));
-    }
-
-    function next() {
-      goTo(index + 1);
-    }
-
-    function startAuto() {
-      stopAuto();
-      if (userPaused) return;
-      autoTimer = setInterval(next, 3200);
-    }
-    function stopAuto() {
-      if (autoTimer) clearInterval(autoTimer);
-      autoTimer = null;
-    }
-
-    /* Drag / swipe */
-    let isDown = false;
-    let startX = 0;
-    let startScroll = 0;
-    let moved = false;
-
-    track.addEventListener('pointerdown', (e) => {
-      isDown = true;
-      moved = false;
-      userPaused = true;
-      stopAuto();
-      track.classList.add('is-dragging');
-      startX = e.clientX;
-      startScroll = track.scrollLeft;
-      track.setPointerCapture(e.pointerId);
-    });
-    track.addEventListener('pointermove', (e) => {
-      if (!isDown) return;
-      const dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      track.scrollLeft = startScroll - dx;
-    });
-    function endDrag(e) {
-      if (!isDown) return;
-      isDown = false;
-      track.classList.remove('is-dragging');
-      const w = slideWidth();
-      index = Math.round(track.scrollLeft / w);
-      index = Math.max(0, Math.min(slides.length - 1, index));
-      goTo(index);
-      setTimeout(() => { userPaused = false; startAuto(); }, 4500);
-    }
-    track.addEventListener('pointerup', endDrag);
-    track.addEventListener('pointercancel', endDrag);
 
     track.addEventListener('scroll', () => {
-      const w = slideWidth();
-      if (!w) return;
-      const i = Math.round(track.scrollLeft / w);
-      if (i !== index && i >= 0 && i < slides.length) {
-        index = i;
-        dots.forEach((d, di) => d.classList.toggle('is-active', di === index));
-      }
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => { const n = nearest(); if (n !== index) mark(n); });
     }, { passive: true });
 
-    track.addEventListener('touchstart', () => {
-      userPaused = true;
-      stopAuto();
-    }, { passive: true });
-    track.addEventListener('touchend', () => {
-      setTimeout(() => { userPaused = false; startAuto(); }, 4500);
-    }, { passive: true });
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { threshold: 0.35 }).observe(track);
+    ['pointerdown', 'touchstart', 'wheel'].forEach(ev =>
+      track.addEventListener(ev, () => { lastTouch = Date.now(); }, { passive: true }));
 
-    startAuto();
+    if (!reduce) {
+      setInterval(() => {
+        if (!visible || document.hidden || Date.now() - lastTouch < 5000) return;
+        const next = index + 1;
+        goTo(next >= slides.length ? 0 : next, next >= slides.length);
+      }, 3600);
+    }
+
+    let down = false, sx = 0, sl = 0;
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; sx = e.clientX; sl = track.scrollLeft;
+      track.classList.add('is-dragging');
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', (e) => { if (down) track.scrollLeft = sl - (e.clientX - sx); });
+    function up() {
+      if (!down) return;
+      down = false;
+      track.classList.remove('is-dragging');
+      goTo(nearest());
+    }
+    track.addEventListener('pointerup', up);
+    track.addEventListener('pointercancel', up);
+    window.addEventListener('resize', () => goTo(index, true));
+    mark(0);
   })();
 
   /* ========== Prévia da área de membros: arrastar, setas e progresso ========== */
@@ -2208,6 +2276,61 @@
       if (!audio.ended) setPlaying(false);
     });
     audio.addEventListener('play', () => setPlaying(true));
+  })();
+
+  /* Progresso de leitura, link ativo, CTA fixo e progresso do áudio */
+  (function () {
+    const bar = document.getElementById('scrollProgress');
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0) + ')';
+        ticking = false;
+      });
+    }
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const links = Array.from(document.querySelectorAll('.navbar__links a'));
+    const map = new Map();
+    links.forEach(a => { const t = document.querySelector(a.getAttribute('href')); if (t) map.set(t, a); });
+    const navIO = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        links.forEach(l => l.classList.remove('is-active'));
+        map.get(e.target).classList.add('is-active');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    map.forEach((_, t) => navIO.observe(t));
+
+    const sticky = document.getElementById('stickyCta');
+    const hero = document.querySelector('.hero');
+    if (sticky && hero) {
+      let heroOut = false;
+      const hiding = new Set();
+      const update = () => sticky.classList.toggle('is-shown', heroOut && hiding.size === 0);
+      new IntersectionObserver(es => { heroOut = !es[0].isIntersecting; update(); }, { threshold: 0 }).observe(hero);
+      const io2 = new IntersectionObserver(es => {
+        es.forEach(e => { e.isIntersecting ? hiding.add(e.target) : hiding.delete(e.target); });
+        update();
+      }, { threshold: 0.1 });
+      [document.getElementById('oferta'), document.querySelector('.cta-final'), document.querySelector('footer')]
+        .filter(Boolean).forEach(el => io2.observe(el));
+    }
+
+    const audio = document.getElementById('voiceAudio');
+    const bars = Array.from(document.querySelectorAll('#voiceWave .voice-note__bar'));
+    if (audio && bars.length) {
+      const paint = () => {
+        const p = audio.duration > 0 ? audio.currentTime / audio.duration : 0;
+        const n = Math.round(p * bars.length);
+        bars.forEach((b, i) => b.classList.toggle('is-played', i < n));
+      };
+      ['timeupdate', 'ended', 'loadedmetadata'].forEach(ev => audio.addEventListener(ev, paint));
+    }
   })();
 </script>
 </body>
