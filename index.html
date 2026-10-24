@@ -24,7 +24,7 @@ section{position:relative;padding-block:clamp(60px,8vw,110px);overflow:hidden}
 .eyebrow::before{content:"✦ ";color:var(--gold)}
 .title{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.1;letter-spacing:-.014em;text-wrap:balance;margin-top:10px}
 .title em{font-style:italic;font-weight:500;color:var(--pink-deep)}
-.title em,.hero h1 em{background:linear-gradient(100deg,var(--pink-deep) 25%,#e58aa6 42%,var(--gold) 52%,#e58aa6 62%,var(--pink-deep) 80%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gshine 8s ease-in-out infinite}
+.title em,.hero h1 em{background:linear-gradient(100deg,var(--pink-deep) 25%,#e58aa6 42%,var(--gold) 52%,#e58aa6 62%,var(--pink-deep) 80%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 @keyframes gshine{0%,35%{background-position:100% 0}70%,100%{background-position:0 0}}
 .lede{color:var(--ink-soft);font-size:16px;line-height:1.75;max-width:540px}
 .center{text-align:center}.center .lede,.center .title{margin-inline:auto}
@@ -35,9 +35,7 @@ section{position:relative;padding-block:clamp(60px,8vw,110px);overflow:hidden}
 .stripes{background-color:var(--blush);background-image:repeating-linear-gradient(90deg,transparent 0 28px,rgba(243,214,224,.5) 28px 56px)}
 .js .rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0ms)}
 .js .rv.in{opacity:1;transform:none}
-.js .title.rv,.js .hero h1.rv{filter:blur(7px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);transition-delay:var(--d,0ms)}
-.js .title.rv.in,.js .hero h1.rv.in{filter:none}
-.js .hero .rv{transition-delay:calc(var(--d,0ms) + 650ms)}
+.js .hero .rv{transition-delay:var(--d,0ms)}
 .gl{font-family:"Great Vibes",cursive;font-style:normal;font-weight:400;font-size:1.3em;line-height:1;color:var(--ink);white-space:nowrap;-webkit-text-fill-color:currentColor}
 .gl b{font-weight:400;color:var(--pink-deep);text-shadow:0 0 18px rgba(224,122,150,.55);animation:glow 2.8s ease-in-out infinite alternate}
 @keyframes glow{from{text-shadow:0 0 14px rgba(224,122,150,.5)}to{text-shadow:0 0 24px rgba(242,168,188,.95),0 0 50px rgba(224,122,150,.55)}}
@@ -49,17 +47,11 @@ section{position:relative;padding-block:clamp(60px,8vw,110px);overflow:hidden}
 @media(max-width:640px){.btn{width:100%;padding:14px 18px;letter-spacing:.06em;font-size:11.8px}}
 .progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:100;transform:scaleX(0);transform-origin:0 50%;pointer-events:none;background:linear-gradient(90deg,var(--pink),var(--pink-deep))}
 
-/* veil */
-.veil{position:fixed;inset:0;z-index:400;display:grid;place-items:center;background:radial-gradient(60% 60% at 50% 40%,#fff,var(--pink-soft));pointer-events:none;animation:veil 1.2s var(--ease) .05s forwards}
-.veil span{font-family:"Great Vibes",cursive;font-size:clamp(4.6rem,18vw,8rem);line-height:1;animation:vl 1.2s var(--ease) .05s forwards}
-.veil b{font-weight:400;color:var(--pink-deep);text-shadow:0 0 30px rgba(224,122,150,.6)}
-@keyframes veil{0%,62%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
-@keyframes vl{0%{opacity:0;transform:scale(.94);filter:blur(8px)}35%,62%{opacity:1;transform:none;filter:none}100%{opacity:0;transform:scale(1.06)}}
 .spark{position:fixed;inset:0;z-index:200;pointer-events:none}
 
 /* nav */
 .navbar{position:fixed;inset-inline:0;top:0;z-index:50;transition:background .35s,box-shadow .35s}
-.navbar.scrolled{background:rgba(255,249,247,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--border),0 12px 30px rgba(184,92,120,.08)}
+.navbar.scrolled{background:rgba(255,249,247,.97);box-shadow:0 1px 0 var(--border),0 12px 30px rgba(184,92,120,.08)}
 .navbar.scrolled::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.65}
 .navbar__in{max-width:1120px;margin-inline:auto;padding:14px clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{font-family:"Great Vibes",cursive;font-size:34px;line-height:1}
@@ -94,8 +86,6 @@ section{position:relative;padding-block:clamp(60px,8vw,110px);overflow:hidden}
 .hero h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(1.8rem,3.8vw,2.8rem);line-height:1.2;margin-top:14px;text-wrap:balance}
 .hero h1 em{font-style:italic}
 .hero .lede{margin:18px auto 0}.hero .cta-row{margin-top:30px}
-.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
-.trust span{padding:9px 15px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.85);font-size:12px;font-weight:700;color:var(--pink-deep);box-shadow:0 8px 22px rgba(184,92,120,.08)}
 .hero::after{content:"";position:absolute;inset:auto 0 0 0;height:140px;pointer-events:none;background:linear-gradient(transparent,#fff)}
 
 /* resultados */
@@ -121,7 +111,7 @@ section{position:relative;padding-block:clamp(60px,8vw,110px);overflow:hidden}
 .feathers i{position:absolute;top:-60px;width:12px;height:34px;border-radius:50%/65% 65% 35% 35%;background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(232,160,181,.55));box-shadow:0 0 14px rgba(244,168,188,.7);opacity:0;animation:fall var(--t,16s) linear var(--dl,0s) infinite}
 @keyframes fall{0%{transform:translate3d(0,0,0) rotate(0);opacity:0}8%{opacity:.85}50%{transform:translate3d(var(--sx,30px),55vh,0) rotate(160deg)}100%{transform:translate3d(calc(var(--sx,30px) * -1),115vh,0) rotate(340deg);opacity:0}}
 .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 32px;max-width:760px}
-.chips span{padding:10px 18px;border:1px solid rgba(201,168,124,.45);border-radius:999px;background:rgba(255,255,255,.06);backdrop-filter:blur(6px);color:var(--gold-l);font-size:12.5px;font-weight:700}
+.chips span{padding:10px 18px;border:1px solid rgba(201,168,124,.45);border-radius:999px;background:rgba(255,255,255,.06);color:var(--gold-l);font-size:12.5px;font-weight:700}
 .mapp{max-width:1060px;margin-inline:auto;text-align:left;border-radius:32px;border:1px solid rgba(232,160,181,.4);background:linear-gradient(180deg,#34202b,#27181f);box-shadow:0 0 0 8px rgba(255,255,255,.04),0 50px 120px rgba(184,92,120,.45),0 0 90px rgba(232,160,181,.25);overflow:hidden}
 .mtop{display:flex;align-items:center;justify-content:space-between;padding:12px clamp(14px,3vw,26px);background:rgba(248,232,238,.08);border-bottom:1px solid rgba(232,160,181,.22)}
 .mtop .gl{font-size:2rem;color:#fff}.mtop .gl b{color:var(--pink)}
@@ -155,7 +145,7 @@ section{position:relative;padding-block:clamp(60px,8vw,110px);overflow:hidden}
 .swipe{display:none;text-align:center;font-size:12px;font-weight:700;color:var(--pink);padding:0 0 10px}
 .mem-note{max-width:620px;margin:20px auto 0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.65)}.mem-note b{color:var(--pink)}
 @media(max-width:700px){.marr{display:none}.swipe{display:block}.mapp{border-radius:26px}}
-.mdl{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:18px;background:rgba(42,31,36,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s .35s}
+.mdl{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:18px;background:rgba(42,31,36,.88);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s .35s}
 .mdl.open{opacity:1;visibility:visible;transition:opacity .35s var(--ease),visibility 0s}
 .mdl__c{position:relative;width:min(860px,100%);max-height:calc(100svh - 36px);overflow-y:auto;display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:clamp(18px,3vw,36px);align-items:center;padding:clamp(18px,3vw,34px);border-radius:32px;border:1px solid var(--gold);background:linear-gradient(160deg,#fff,var(--blush));box-shadow:0 0 0 8px rgba(201,168,124,.15),0 50px 120px rgba(0,0,0,.5);transform:translateY(24px) scale(.97);transition:transform .5s var(--ease);text-align:left}
 .mdl.open .mdl__c{transform:none}
@@ -218,7 +208,7 @@ section{position:relative;padding-block:clamp(60px,8vw,110px);overflow:hidden}
 /* time e mentora */
 .team{background:var(--blush)}
 .tg{display:flex;flex-wrap:wrap;justify-content:center;gap:22px}
-.tc{flex:0 0 calc((100% - 44px)/3);background:#fff;border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(184,92,120,.07);transition:transform .45s var(--ease),box-shadow .4s,opacity .8s}
+.tc{flex:0 0 min(100%,340px);background:#fff;border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(184,92,120,.07);transition:transform .45s var(--ease),box-shadow .4s,opacity .8s}
 .tc:hover{box-shadow:0 22px 50px rgba(184,92,120,.17)}
 .tc__p{aspect-ratio:3/4;overflow:hidden;background:var(--pink-soft)}
 .tc__p img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .8s var(--ease)}
@@ -227,8 +217,6 @@ section{position:relative;padding-block:clamp(60px,8vw,110px);overflow:hidden}
 .tc h3{font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-weight:600}
 .tc small{display:block;margin:3px 0 10px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-deep)}
 .tc p{font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
-@media(max-width:900px){.tc{flex-basis:calc((100% - 22px)/2)}}
-@media(max-width:560px){.tc{flex-basis:100%;max-width:340px}}
 .mentor{background:#fff}
 .mentor .wrap{display:grid;grid-template-columns:38% 1fr;gap:clamp(28px,5vw,56px);align-items:start}
 .mentor__m{border-radius:26px;overflow:hidden;background:var(--pink-soft);border:1px solid var(--border);box-shadow:0 30px 70px rgba(184,92,120,.2)}
@@ -302,7 +290,7 @@ footer nav{display:flex;gap:22px}footer a:hover{color:#fff}
 
 .sticky{display:none}
 @media(max-width:900px){
-.sticky{display:flex;align-items:center;gap:12px;position:fixed;left:0;right:0;bottom:0;z-index:65;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(255,249,247,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 -1px 0 var(--border),0 -12px 30px rgba(184,92,120,.1);transform:translateY(110%);visibility:hidden;transition:transform .45s var(--ease),visibility 0s .45s}
+.sticky{display:flex;align-items:center;gap:12px;position:fixed;left:0;right:0;bottom:0;z-index:65;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(255,249,247,.98);box-shadow:0 -1px 0 var(--border),0 -12px 30px rgba(184,92,120,.1);transform:translateY(110%);visibility:hidden;transition:transform .45s var(--ease),visibility 0s .45s}
 .sticky.show{transform:none;visibility:visible;transition:transform .45s var(--ease),visibility 0s}
 .sticky div{display:flex;flex-direction:column;line-height:1.1;white-space:nowrap}
 .sticky s{font-size:11px;color:var(--ink-muted)}.sticky strong{font-family:"Cormorant Garamond",serif;font-size:1.6rem;color:var(--pink-deep)}
@@ -341,11 +329,59 @@ footer{padding-bottom:96px}}
 .mx i{color:var(--pink-deep)}.mx b{color:var(--ink)}.mx span{color:var(--ink-soft)}
 .swipe{color:var(--pink-deep)}
 .mem-note{color:var(--ink-soft)}.mem-note b{color:var(--pink-deep)}
+/* ===== MENOS CANSAÇO: ritmo calmo + área de membros compacta ===== */
+section{padding-block:clamp(52px,7vw,92px)}
+.head{margin-bottom:clamp(24px,3.5vw,38px)}
+.mem .head{margin-bottom:22px}
+.chips{margin-bottom:24px}
+.mapp{max-width:980px}
+.mtop{gap:12px}
+.mtop__t{flex:1;text-align:center;font-family:"Cormorant Garamond",serif;font-weight:600;font-size:1.2rem;color:var(--ink);line-height:1.1}
+.mtop__t small{display:block;margin-top:3px;font:600 11.5px Manrope,sans-serif;color:var(--ink-muted)}
+.mgrid{counter-reset:c;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:clamp(14px,3vw,24px)}
+.mgrid .mc{width:auto;flex:none;transition:transform .35s var(--ease)}
+.mapp.in .mgrid .mc{animation:pop .6s var(--ease) backwards;animation-delay:calc(var(--i,0) * 60ms)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.95)}}
+.mgrid .mc:hover{transform:translateY(-4px)}
+.mgrid .mc__img{border-radius:14px}
+.mgrid .mc__img::before{width:24px;height:24px;top:6px;left:6px;font-size:.9rem}
+.mgrid .mc--bon .mc__img{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,124,.6),0 14px 30px rgba(201,168,124,.35)}
+.mgrid .mc--bon .mc__img::before{content:"🎁";font-size:12px}
+.mgrid .mx{grid-column:span 2;width:auto;padding:14px;border-radius:14px}
+.mfoot{text-align:center;padding:2px 18px 24px}
+.mfoot p{font-size:13px;line-height:1.6;color:var(--ink-soft);margin-bottom:14px}
+.mfoot .btn{min-height:48px}
+@media(min-width:701px){
+.mgrid{grid-template-columns:repeat(5,1fr);gap:14px}
+.mgrid .mc--b1{grid-column:5;grid-row:1}
+.mgrid .mc--b2{grid-column:5;grid-row:2}
+.mgrid .mx{display:none}
+.mgrid .mc__img{border-radius:18px}
+.mgrid .mc__img::before{width:30px;height:30px;top:10px;left:10px;font-size:1.05rem}
+.mfoot .btn{width:auto}}
+/* ===== MEMBROS NO CELULAR: um módulo ao lado do outro, arrastando ===== */
+.mbar,.mswipe{display:none}
+@media(max-width:700px){
+.mgrid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:18px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;padding:16px 18px 12px}
+.mgrid::-webkit-scrollbar{display:none}
+.mgrid .mc{flex:0 0 clamp(138px,40vw,170px);scroll-snap-align:start}
+.mgrid .mx{flex:0 0 clamp(150px,44vw,190px);grid-column:auto;scroll-snap-align:start;display:flex}
+.mgrid .mc__img{border-radius:18px}
+.mgrid .mc__img::before{width:28px;height:28px;top:8px;left:8px;font-size:1rem}
+.mbar{display:block;height:5px;margin:2px 18px 8px;border-radius:99px;background:var(--pink-soft);overflow:hidden}
+.mbar span{display:block;height:100%;width:18%;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--pink-deep))}
+.mswipe{display:block;text-align:center;font-size:12px;font-weight:700;color:var(--pink-deep);padding:0 0 10px}
+.mfoot{padding-top:0}}
+/* toque não deve "grudar" o efeito de hover */
+@media(hover:none){
+.mc__img::after{display:none!important}
+.mgrid .mc:hover{transform:none}
+.mc:hover .mc__img{border-color:rgba(184,92,120,.28);box-shadow:0 18px 40px rgba(184,92,120,.24)}
+.mgrid .mc--bon:hover .mc__img{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,124,.6),0 14px 30px rgba(201,168,124,.35)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.js .rv{opacity:1;transform:none;filter:none}}
 </style>
 </head>
 <body>
-<div class="veil" aria-hidden="true"><span>Glow<b>a</b></span></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="navbar" id="navbar"><div class="navbar__in">
@@ -391,25 +427,19 @@ footer{padding-bottom:96px}}
 
 <!-- ÁREA DE MEMBROS -->
 <section class="mem" id="conteudo">
-  <div class="feathers" id="feathers" aria-hidden="true"></div>
-  <div class="wrap">
+    <div class="wrap">
     <div class="head center">
       <p class="eyebrow rv">Uma prévia do que você vai receber</p>
       <h2 class="title rv">Um universo inteiro <em>dentro do <span class="gl">Glow<b>a</b></span></em></h2>
-      <p class="lede rv">Dá uma espiadinha no que está te esperando lá dentro. Toque em qualquer capa pra ver o módulo por dentro. 👉</p>
+      <p class="lede rv">Dá uma espiadinha no que está te esperando lá dentro. Toque em qualquer capa pra ver o módulo por dentro.</p>
     </div>
-    <div class="chips rv"><span>8 módulos</span><span>Celular e computador</span><span>Bônus + comunidade</span><span>Acesso imediato</span></div>
+    <div class="chips rv"><span>8 módulos</span><span>Celular e computador</span><span>Bônus + comunidade</span></div>
     <div class="mapp rv" id="app">
-      <div class="mtop"><span class="gl">Glow<b>a</b></span><span class="mav" aria-hidden="true">♡</span></div>
-      <div class="mhero"><div class="mlogo" aria-label="GLOWA">Glow<b>a</b></div><h3>Bem-vinda, linda! ✨</h3><p>Seu glow começa aqui. Módulos em vídeo, bônus e comunidade, tudo no seu ritmo.</p><div class="mprog" aria-hidden="true"><span>Seu glow</span><i></i><span>♡</span></div><button class="btn" data-open="0">Começar agora</button></div>
-      <div class="mrow">
-        <div class="mrow__h"><div><h4>Módulos do método</h4><small>Seu glow começa aqui ♡</small></div><div class="marr"><button data-sc="-1" aria-label="Anterior">←</button><button data-sc="1" aria-label="Próximo">→</button></div></div>
-        <div class="mtrack" id="cvMods" tabindex="0" aria-label="Módulos"></div><p class="swipe">arrasta pro lado 👉</p>
-      </div>
-      <div class="mrow">
-        <div class="mrow__h"><div><h4>Bônus pra você 🎁</h4><small>E tem muito mais lá dentro</small></div><div class="marr"><button data-sc="-1" aria-label="Anterior">←</button><button data-sc="1" aria-label="Próximo">→</button></div></div>
-        <div class="mtrack" id="cvBon" tabindex="0" aria-label="Bônus"></div><p class="swipe">arrasta pro lado 👉</p>
-      </div>
+      <div class="mtop"><span class="gl">Glow<b>a</b></span><span class="mtop__t">Bem-vinda, linda ✨<small>toque numa capa pra ver o módulo por dentro</small></span><span class="mav" aria-hidden="true">♡</span></div>
+      <div class="mgrid" id="mgrid"></div>
+      <div class="mbar" aria-hidden="true"><span id="mbar"></span></div>
+      <p class="mswipe">arrasta pro lado 👉</p>
+      <div class="mfoot"><p>✦ E tem muito mais lá dentro: aulas, protocolos e a comunidade de alunas.</p><button class="btn" data-open="0">Começar pelo módulo 1</button></div>
     </div>
     <p class="mem-note rv">O que você viu aqui é apenas <b>uma prévia</b>. O conteúdo completo de cada módulo fica liberado dentro da sua área de membros.</p>
     <div class="cta-row rv"><a href="#" data-buy class="btn">Quero entrar na área de membros →</a></div>
@@ -436,13 +466,13 @@ footer{padding-bottom:96px}}
     <div class="vn__b"><div class="vn__w" id="vnW" aria-hidden="true"></div><div class="vn__m"><span id="vnT">0:00</span><span>Áudio · Aluna GLOWA</span></div></div>
     <audio id="vnA" preload="none" playsinline><source src="src/img/melhorinvestimento.ogg" type="audio/ogg"><source src="src/img/melhorinvestimento.mp3" type="audio/mpeg"></audio>
   </div>
-  <q class="rv">Comprar o GLOWA foi o melhor investimento que eu fiz em mim.</q>
+  <q class="rv">(sério, esse foi o melhor investimento que eu fiz esse ano)</q>
   <small class="rv">toque para ouvir</small>
 </div></section>
 
 <!-- BÔNUS -->
 <section class="bonus" id="bonus"><div class="wrap">
-  <div class="head center"><p class="eyebrow rv">Bônus</p><h2 class="title rv">Além do método, <em>você leva tudo isso.</em></h2></div>
+  <div class="head center"><p class="eyebrow rv">Bônus que aceleram o resultado</p><h2 class="title rv">Você entra no método e ainda leva <em>tudo isso de graça.</em></h2></div>
   <div class="bgrid">
     <div class="card rv"><span class="tag">Bônus 01</span><h3>Guia de Skincare por Tipo de Pele</h3><p>Protocolos prontos para pele oleosa, seca, mista e sensível, com produtos acessíveis.</p><div class="val">Valor: R$ 97</div></div>
     <div class="card rv" style="--d:80ms"><span class="tag">Bônus 02</span><h3>Guia de Maquiagem Rápida</h3><p>Looks de 5 e 10 minutos que elevam a aparência sem esforço.</p><div class="val">Valor: R$ 57</div></div>
@@ -464,29 +494,11 @@ footer{padding-bottom:96px}}
   <div class="cta-row rv"><a href="#" data-buy class="btn">Chega de me deixar por último</a></div>
 </div></section>
 
-<!-- TIME -->
+<!-- ESPECIALISTA -->
 <section class="team"><div class="wrap">
-  <div class="head center"><p class="eyebrow rv">Especialistas</p><h2 class="title rv">O time <span class="gl">Glow<b>a</b></span></h2><p class="lede rv">Especialistas que caminham com você em cada etapa da transformação.</p></div>
+  <div class="head center"><p class="eyebrow rv">Especialista GLOWA</p><h2 class="title rv">Quem caminha com você <em>em cada passo.</em></h2><p class="lede rv">Quem caminha com você em pele, cabelo e autocuidado.</p></div>
   <div class="tg">
-    <article class="tc rv"><div class="tc__p"><img src="src/img/iris.jpg" onerror="imgFb(this)" alt="Iris, especialista em estilo e maquiagem" loading="lazy"></div><div class="tc__b"><h3>Iris</h3><small>Estilo, Presença, Maquiagem</small><p>Iris contribui com um olhar sofisticado e atual, ensinando como valorizar a própria imagem com autenticidade e confiança.</p></div></article>
-    <article class="tc rv" style="--d:80ms"><div class="tc__p"><img src="src/img/gigi.jpg" onerror="imgFb(this)" alt="Gigi, especialista em lei da atração e lei da suposição" loading="lazy"></div><div class="tc__b"><h3>Gigi</h3><small>Lei da Atração, Lei da Suposição, Poder da Mente</small><p>Gigi ensina como a mente molda a realidade. Lei da atração, lei da suposição e o poder de assumir a versão de si mesma que você deseja, porque isso muda a forma como você se vê, se sente e se apresenta. Glow up de verdade começa por dentro.</p></div></article>
-    <article class="tc rv" style="--d:160ms"><div class="tc__p"><img src="src/img/rafaexpert.jpeg" onerror="imgFb(this)" alt="Rafaela, especialista em skincare e autoestima" loading="lazy"></div><div class="tc__b"><h3>Rafaela</h3><small>Skincare, Hábitos, Autoestima</small><p>Rafaela traz uma abordagem acolhedora e realista, ajudando as meninas a se cuidarem com mais consciência e carinho.</p></div></article>
-    <article class="tc rv"><div class="tc__p"><img src="src/img/shar.jpg" onerror="imgFb(this)" alt="Shay, especialista em pele, cabelo e postura" loading="lazy"></div><div class="tc__b"><h3>Shay</h3><small>Pele, Cabelo, Postura</small><p>Shay ensina cuidado com a pele, o cabelo e a postura, detalhes que elevam a presença e fazem a diferença no dia a dia.</p></div></article>
-    <article class="tc rv" style="--d:80ms"><div class="tc__p"><img src="src/img/bianca.jpg" onerror="imgFb(this)" alt="Bianca, especialista em pele e autocuidado" loading="lazy"></div><div class="tc__b"><h3>Bianca</h3><small>Pele, Cabelo, Autocuidado</small><p>Bianca traz leveza e praticidade para o dia a dia, ajudando as meninas a construírem rotinas reais e sustentáveis de cuidado.</p></div></article>
-  </div>
-</div></section>
-
-<!-- MENTORA -->
-<section class="mentor"><div class="wrap">
-  <div class="mentor__m rv"><img src="src/img/mentora.jpg" onerror="imgFb(this)" alt="Nathaly França, Expert GLOWA" loading="lazy"></div>
-  <div>
-    <p class="eyebrow rv">A expert por trás do GLOWA</p>
-    <h2 class="title rv">Nathaly França</h2>
-    <p class="mentor__n rv">Fundadora &amp; Expert</p>
-    <p class="lede rv">Eu criei o Glowa com um propósito claro: ajudar mulheres a se cuidarem de forma real, consciente e sem tentarem se encaixar em padrões impossíveis. Aqui não ensinamos a copiar um estereótipo. Ensinamos a potencializar a sua própria beleza, fortalecer a autoestima e construir uma relação mais leve e verdadeira consigo mesma.</p>
-    <p class="lede rv">O Glowa nasceu da vontade de unir cuidado prático (pele, cabelo, estilo, presença…) com desenvolvimento interno. Porque glow up de verdade só acontece quando os dois lados caminham juntos.</p>
-    <p class="lede rv">Eu conduzo o método, a estrutura e a visão do projeto. E tenho o prazer de contar com um time de meninas talentosas que somam comigo nessa missão.</p>
-    <div class="soc rv"><a href="https://www.instagram.com/franccaly/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@itsmefrancca?lang=en" target="_blank" rel="noopener">TikTok</a></div>
+    <article class="tc rv"><div class="tc__p"><img src="src/img/bianca.jpg" onerror="imgFb(this)" alt="Bianca, especialista em pele e autocuidado" loading="lazy"></div><div class="tc__b"><h3>Bianca</h3><small>Pele, Cabelo, Autocuidado</small><p>Bianca traz leveza e praticidade para o dia a dia, ajudando as meninas a construírem rotinas reais e sustentáveis de cuidado.</p></div></article>
   </div>
 </div></section>
 
@@ -507,7 +519,7 @@ footer{padding-bottom:96px}}
   <p class="lede rv" style="margin:14px auto 0">Método completo + 4 bônus + comunidade de mulheres que decidiram se priorizar.</p>
   <div class="box rv">
     <ul>
-      <li>Método GLOWA completo (8 módulos)</li><li>Guia de Skincare por Tipo de Pele</li><li>Guia de Maquiagem Rápida</li><li>Receitas Saudáveis para o Glow</li><li>Comunidade exclusiva de alunas</li><li>Garantia de 30 dias</li>
+      <li>Método GLOWA completo (9 módulos)</li><li>Guia de Skincare por Tipo de Pele</li><li>Guia de Maquiagem Rápida</li><li>Receitas Saudáveis para o Glow</li><li>Comunidade exclusiva de alunas</li><li>Garantia de 30 dias</li>
     </ul>
     <div class="pr">
       <p class="from">De <s>R$ 197</s> por apenas</p>
@@ -556,7 +568,7 @@ footer{padding-bottom:96px}}
 <div class="sticky" id="sticky"><div><s>R$ 197</s><strong>R$ 57,00</strong></div><a href="#" data-buy class="btn">Garantir minha vaga</a></div>
 
 <script>
-const CHECKOUT="https://pay.cakto.com.br/38zgvua_1168725";
+const CHECKOUT="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=teBAwDtT";
 document.querySelectorAll('[data-buy]').forEach(a=>{a.href=CHECKOUT;a.target="_blank";a.rel="noopener"});
 const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
@@ -669,18 +681,15 @@ const IT=[
 {img:'10.jpeg',e:'Bônus',t:'Receitas Saudáveis',d:'Receitas práticas e gostosas pra acompanhar a sua rotina de autocuidado.',l:['Receitas fáceis de fazer','Pra rotina corrida','Sabor e leveza']}];
 const alt=IT.map(i=>'Capa: '+i.e+' '+i.t);
 const card=i=>'<button class="mc" data-open="'+i+'" aria-label="Ver prévia: '+IT[i].e+' '+IT[i].t+'"><span class="mc__img"><img src="src/img/'+IT[i].img+'" onerror="imgFb(this)" alt="'+alt[i]+'" width="1024" height="1536" loading="lazy" decoding="async" draggable="false"></span></button>';
-const mods=$('#cvMods'),bon=$('#cvBon');
-for(let i=0;i<8;i++)mods.insertAdjacentHTML('beforeend',card(i));
-mods.insertAdjacentHTML('beforeend','<div class="mx"><i>✦</i><b>E tem muito mais lá dentro</b><span>Aulas, protocolos e a comunidade de alunas te esperam na área de membros.</span></div>');
-[8,9].forEach(i=>bon.insertAdjacentHTML('beforeend',card(i)));
+const grid=$('#mgrid');
+const card2=(i,cls,k)=>'<button class="mc '+cls+'" style="--i:'+k+'" data-open="'+i+'" aria-label="Ver prévia: '+IT[i].e+' '+IT[i].t+'"><span class="mc__img"><img src="src/img/'+IT[i].img+'" onerror="imgFb(this)" alt="'+alt[i]+'" width="1024" height="1536" loading="lazy" decoding="async" draggable="false"></span></button>';
+let k=0;
+for(let i=0;i<8;i++)grid.insertAdjacentHTML('beforeend',card2(i,'',k++));
+grid.insertAdjacentHTML('beforeend',card2(8,'mc--bon mc--b1',k++));
+grid.insertAdjacentHTML('beforeend',card2(9,'mc--bon mc--b2',k++));
+grid.insertAdjacentHTML('beforeend','<div class="mx"><i>✦</i><b>E tem muito mais</b><span>Aulas, protocolos e comunidade.</span></div>');
 let moved=false;
-document.querySelectorAll('.mtrack').forEach(t=>{let d=false,sx=0,sl=0;
-t.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;d=true;moved=false;sx=e.clientX;sl=t.scrollLeft});
-t.addEventListener('pointermove',e=>{if(!d)return;const x=e.clientX-sx;if(Math.abs(x)>5){moved=true;t.classList.add('drag');t.scrollLeft=sl-x}});
-const up=()=>{if(!d)return;d=false;t.classList.remove('drag')};
-['pointerup','pointerleave','pointercancel'].forEach(v=>t.addEventListener(v,up));
-t.addEventListener('dragstart',e=>e.preventDefault())});
-document.querySelectorAll('.marr button').forEach(b=>b.addEventListener('click',()=>{const t=b.closest('.mrow').querySelector('.mtrack');t.scrollBy({left:+b.dataset.sc*t.clientWidth*.7,behavior:'smooth'})}));
+const mbar=$('#mbar');const upb=()=>{const m=grid.scrollWidth-grid.clientWidth;mbar.style.width=(18+(m>0?grid.scrollLeft/m:0)*82)+'%'};grid.addEventListener('scroll',upb,{passive:true});addEventListener('resize',upb);upb();
 const md=$('#mdl'),mI=$('#mdI');let cur=0,lastF=null;
 function fill(i){cur=(i+IT.length)%IT.length;const it=IT[cur];mI.src='src/img/'+it.img;mI.alt=alt[cur];mI.dataset.n=0;mI.dataset.f=it.img;$('#mdE').textContent=it.e;$('#mdT').textContent=it.t;$('#mdD').textContent=it.d;$('#mdL').innerHTML=it.l.map(x=>'<li>'+x+'</li>').join('')}
 mI.onerror=function(){imgFb(this)};
@@ -690,10 +699,6 @@ $('#app').addEventListener('click',e=>{if(moved){moved=false;return}const b=e.ta
 $('#mdX').onclick=closeM;md.addEventListener('click',e=>{if(e.target===md)closeM()});
 $('#mdP').onclick=()=>fill(cur-1);$('#mdN').onclick=()=>fill(cur+1);
 addEventListener('keydown',e=>{if(e.key==='Escape'){setM(false);if(md.classList.contains('open'))closeM()}if(!md.classList.contains('open'))return;if(e.key==='ArrowLeft')fill(cur-1);if(e.key==='ArrowRight')fill(cur+1)});
-if(!RM){const f=$('#feathers');for(let i=0;i<16;i++){const s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.setProperty('--t',(14+Math.random()*12)+'s');s.style.setProperty('--dl',(-Math.random()*20)+'s');s.style.setProperty('--sx',(20+Math.random()*60)*(Math.random()<.5?-1:1)+'px');s.style.transform='scale('+(.6+Math.random()*.9)+')';f.appendChild(s)}
-const app=$('#app');
-app.addEventListener('pointermove',e=>{const c=e.target.closest('.mc');if(!c||e.pointerType!=='mouse')return;const r=c.querySelector('.mc__img').getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(700px) rotateX('+(-y*8)+'deg) rotateY('+(x*10)+'deg) translateY(-5px)'});
-app.addEventListener('pointerout',e=>{const c=e.target.closest('.mc');if(c)c.style.transform=''})}
 }catch(e){console.error('GLOWA membros:',e)}})();
 
 /* rastro de brilhos no cursor/toque + tilt nos cards */
@@ -704,11 +709,8 @@ const add=(x,y,n,b)=>{for(let i=0;i<n;i++)P.push({x,y,vx:(Math.random()-.5)*(b?6
 let run=0;
 function f(){cx.clearRect(0,0,cv.width,cv.height);P=P.filter(p=>p.l>0);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.03;p.l-=.022;cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.h;cx.font=p.s+'px serif';cx.fillText(p.c,p.x,p.y)});if(P.length)requestAnimationFrame(f);else{run=0;cx.clearRect(0,0,cv.width,cv.height)}}
 const kick=()=>{if(P.length>90)P.splice(0,P.length-90);if(!run){run=1;requestAnimationFrame(f)}};
-addEventListener('pointermove',e=>{if(e.pointerType==='mouse'&&Math.random()<.2){add(e.clientX,e.clientY,1);kick()}});
+addEventListener('pointermove',e=>{if(e.pointerType==='mouse'&&Math.random()<.07){add(e.clientX,e.clientY,1);kick()}});
 addEventListener('pointerdown',e=>{if(e.target.closest('#vn'))return;add(e.clientX,e.clientY,12,1);kick()});
-document.querySelectorAll('.card,.tc,.stat').forEach(el=>{
-el.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform='perspective(800px) rotateX('+(-y*6)+'deg) rotateY('+(x*8)+'deg) translateY(-4px)'});
-el.addEventListener('pointerleave',()=>el.style.transform='')});
 }catch(e){console.error('GLOWA sparkles:',e)}})();
 </script>
 </body>
