@@ -47,6 +47,12 @@ section{position:relative;padding-block:clamp(52px,7vw,92px);overflow:hidden}
 @media(max-width:640px){.btn{width:100%;padding:14px 18px;letter-spacing:.06em;font-size:11.8px}}
 .progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:100;transform:scaleX(0);transform-origin:0 50%;pointer-events:none;background:linear-gradient(90deg,var(--pink),var(--pink-deep))}
 
+/* veil */
+.veil{position:fixed;inset:0;z-index:400;display:grid;place-items:center;background:radial-gradient(60% 60% at 50% 40%,#fff,var(--pink-soft));pointer-events:none;animation:veil 1.2s var(--ease) .05s forwards}
+.veil span{font-family:"Great Vibes",cursive;font-size:clamp(4.6rem,18vw,8rem);line-height:1;animation:vl 1.2s var(--ease) .05s forwards}
+.veil b{font-weight:400;color:var(--pink-deep);text-shadow:0 0 30px rgba(224,122,150,.6)}
+@keyframes veil{0%,62%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+@keyframes vl{0%{opacity:0;transform:scale(.94);filter:blur(8px)}35%,62%{opacity:1;transform:none;filter:none}100%{opacity:0;transform:scale(1.06)}}
 .spark{position:fixed;inset:0;z-index:200;pointer-events:none}
 
 /* nav */
@@ -309,6 +315,7 @@ footer{padding-bottom:96px}}
 </style>
 </head>
 <body>
+<div class="veil" aria-hidden="true"><span>Glow<b>a</b></span></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="navbar" id="navbar"><div class="navbar__in">
